@@ -7,11 +7,20 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    final goRouter = GoRouter(
+      initialLocation: '/',
+      debugLogDiagnostics: true,
+      routes: [
+        GoRoute(
+          path: '/',
+          builder: (context, state) => const ProductsListScreen(),
+        ),
+      ],
+    );
+    return MaterialApp.router(
+      routerConfig: goRouter,
       debugShowCheckedModeBanner: false,
       restorationScopeId: 'app',
-      // * The home page of the app
-      home: const ProductsListScreen(),
       onGenerateTitle: (BuildContext context) => 'My Shop'.hardcoded,
       theme: ThemeData(
         primarySwatch: Colors.grey,
